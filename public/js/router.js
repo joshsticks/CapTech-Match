@@ -14,8 +14,12 @@ define([
      
         home: function () {
             var self = this;
-            require(['views/home'], function (Home) {
-                self.changePage(new Home());
+            require(['views/home', 'views/install'], function (Home, Install) {
+                if(window.navigator.standalone) {
+                    self.changePage(new Home());
+                } else {
+                    self.changePage(new Install());
+                }
             });
         },
 
